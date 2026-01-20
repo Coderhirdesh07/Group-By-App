@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const QuantityComponent = () => {
+const OrdersScreen = () => {
   return (
     <View>
-      <Text>QuantityComponent</Text>
+      <Text>OrdersScreen</Text>
     </View>
   )
 }
 
-export default QuantityComponent
+export default OrdersScreen
 
 const styles = StyleSheet.create({})

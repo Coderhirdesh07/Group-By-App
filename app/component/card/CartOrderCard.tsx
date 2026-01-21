@@ -1,7 +1,7 @@
 import { StyleSheet, Image, Text,View } from 'react-native'
 import React from 'react';
-import image from "../assets/images/icon.png";
-const index = () => {
+import image from "../../../assets/images/icon.png";
+const CartOrderCard = () => {
   const handleCartOrder = ()=>{}
   return (
     <View style={styles.container}>
@@ -19,7 +19,7 @@ const index = () => {
   )
 }
 
-export default index
+export default CartOrderCard;
 
 const styles = StyleSheet.create({
   container:{

@@ -12,6 +12,16 @@ interface ProductState{
     noOfItems:number;
 }
 
+async function updateCartSummary(state:ProductState){
+    state.totalPrice = state.product.reduce(
+        (total,item) => total + (item.productPrice*item.productQuantity)
+    ,0);
+
+    state.noOfItems = state.product.reduce(
+        (count,item)=> count +item.productQuantity
+   ,0);
+}
+
 const initialState:ProductState = {
     product:[],
     totalPrice:0,

@@ -1,20 +1,27 @@
-import { StyleSheet, Image, Text,View } from 'react-native'
-import React from 'react';
-import image from "../assets/images/icon.png";
-const index = () => {
-  const handleCartOrder = ()=>{}
+import { StyleSheet, View, Image, Text } from 'react-native'
+import React from 'react'
+
+interface CardProps {
+  productTitle: string
+  price: number
+  imgUrl: string
+}
+
+const index = ({ productTitle, price, imgUrl }: CardProps) => {
   return (
     <View style={styles.container}>
-      <View style={styles.innerContainer}>
-        <Image style={styles.img} source={image}/>
+      <Image
+        style={styles.productImg}
+        source={{ uri: imgUrl }}
+      />
 
-        <Text style={styles.title}>Product</Text>
-        <View style={styles.sideContainer}>
-        <Text style={styles.quantity}>Quantity</Text>
-        <Text style={styles.quantity}>Rs.Price</Text>
-        </View>
+      <View style={styles.content}>
+        <Text style={styles.heading} numberOfLines={1}>
+          Hello
+        </Text>
 
-      </View> 
+        <Text style={styles.price}>₹ {20}</Text>
+      </View>
     </View>
   )
 }
@@ -22,42 +29,48 @@ const index = () => {
 export default index
 
 const styles = StyleSheet.create({
-  container:{
-    padding:16,
-    marginTop:30,
-    flex:1,
-    justifyContent:'center'
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 12,
+    marginVertical: 10,
+    marginHorizontal: 16,
+    borderRadius: 12,
+    backgroundColor: '#fff',
+
+    // Shadow (Android)
+    elevation: 4,
+
+    // Shadow (iOS)
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 6,
   },
-  innerContainer:{
-    padding:10,
-    margin:10,
-    borderRadius:8,
-    display:"flex",
-    flexDirection:'row',
-    justifyContent:'space-between',
-    backgroundColor:'#FC785D',
+
+  productImg: {
+    height: 70,
+    width: 70,
+    borderRadius: 10,
+    marginRight: 12,
+    backgroundColor: '#f2f2f2',
   },
-  img:{
-    height:55,
-    width:55,
-    borderRadius:8,
-    padding:4,
-    margin:2,
-    shadowColor:'#fff'
+
+  content: {
+    flex: 1,
+    justifyContent: 'center',
   },
-  quantity:{
-    fontSize:16,
-    fontWeight:'200',
-    padding:5
+
+  heading: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#222',
+    marginBottom: 4,
   },
-  title:{
-    fontSize:18,
-    fontWeight:'300',
-    padding:10
+
+  price: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: '#F00971',
   },
-  sideContainer:{
-    display:'flex',
-    flexDirection:'column',
-    justifyContent:'space-between'
-  }
-});
+})

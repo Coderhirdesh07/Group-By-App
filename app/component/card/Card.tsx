@@ -1,22 +1,26 @@
-import { StyleSheet, View,Image ,Text} from 'react-native'
+import { StyleSheet, View, Image, Text } from 'react-native'
 import React from 'react'
-import image from "../../../assets/images/icon.png";
 
-interface CardProps{
-  productTitle:string;
-  price:number;
-  imgUrl:string;
+interface CardProps {
+  productTitle: string
+  price: number
+  imgUrl: string
 }
-const Card = (cardData:CardProps) => {
+
+const Card = ({ productTitle, price, imgUrl }: CardProps) => {
   return (
     <View style={styles.container}>
-      <Image style={styles.productImg} source={image}/>
-      <Text style={styles.heading}>Product</Text>
+      <Image
+        style={styles.productImg}
+        source={{ uri: imgUrl }}
+      />
 
-      <View style={styles.sideContainer}>
-        <Text style={styles.price}>Price</Text>
-        {/* here a component with increment will come */}
-        <Text style={styles.price}>Inc.Comp</Text>
+      <View style={styles.content}>
+        <Text style={styles.heading} numberOfLines={1}>
+          productTitle
+        </Text>
+
+        <Text style={styles.price}>₹ {price}</Text>
       </View>
     </View>
   )
@@ -25,38 +29,48 @@ const Card = (cardData:CardProps) => {
 export default Card
 
 const styles = StyleSheet.create({
-  container:{
-    padding:8,
-    marginTop:40,
-    borderRadius:5,
-    backgroundColor:'#F00971',
-    display:'flex',
-    flexDirection:'row',
-    justifyContent:'space-between',
-  },
-  productImg:{
-    height:50,
-    width:50,
-    padding:5,
-    marginVertical:5,
-    borderRadius:5
-  },
-  heading:{
-    fontSize:18,
-    fontWeight:'300',
-    padding:5,
-    marginTop:5,
-  },
-  price:{
-    fontSize:14,
-    fontWeight:'200'
-  },
-  sideContainer:{
-    display:"flex",
-    flexDirection:"column",
-    gap:2,
-    justifyContent:'center'
-  }
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 12,
+    marginVertical: 10,
+    marginHorizontal: 16,
+    borderRadius: 12,
+    backgroundColor: '#fff',
 
+    // Shadow (Android)
+    elevation: 4,
 
+    // Shadow (iOS)
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 6,
+  },
+
+  productImg: {
+    height: 70,
+    width: 70,
+    borderRadius: 10,
+    marginRight: 12,
+    backgroundColor: '#f2f2f2',
+  },
+
+  content: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+
+  heading: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#222',
+    marginBottom: 4,
+  },
+
+  price: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: '#F00971',
+  },
 })

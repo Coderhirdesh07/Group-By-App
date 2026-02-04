@@ -1,27 +1,27 @@
-import { StyleSheet, View ,Text, FlatList} from 'react-native'
+import { StyleSheet, View ,Text} from 'react-native'
 import React,{useEffect, useState} from 'react'
-import CartOrderCard from '@/app/component/card/CartOrderCard'
 import { API_CONFIG } from '@/app/config'
 import { Orders } from '@/app/constants/data'
 const OrdersScreen = () => {
   const [order,setOrders] = useState<Orders | null>(null);
 
-  // async function fetchOrders(){
-  //   try{
-  //     const response = await fetch(`${API_CONFIG.BASE_URL}/${API_CONFIG.ENDPOINT}`);
-  //     if(response){ 
-  //       setOrders(response);
-  //     }
-  //     else  setOrders(null);
-  //   }
-  //   catch(error){
-  //     console.log("error occured");
-  //     throw error;
-  //   }
-  // }
-  // useEffect(()=>{
-  //   fetchOrders();
-  // },[]);
+  async function fetchOrders(){
+    try{
+      const response = await fetch(`${API_CONFIG.BASE_URL}/${API_CONFIG.ENDPOINT}`);
+      if(!response.ok){
+        throw new Error("Error occured");
+      }
+      const data = await response.json();
+      setOrders(data);
+    }
+    catch(error){
+      console.log("error occured");
+      throw error;
+    }
+  }
+  useEffect(()=>{
+    fetchOrders();
+  },[]);
 
   return (
     <View style = {styles.container}>

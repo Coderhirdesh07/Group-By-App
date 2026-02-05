@@ -14,20 +14,22 @@ import { useForm, Controller } from 'react-hook-form';
 import { useRouter } from 'expo-router';
 import hiddenEye from "../../../assets/icons/hide.png";
 import shownEye  from "../../../assets/icons/view.png";
-
+import axios from "axios";
+import { API_CONFIG } from '@/app/config';
 const Login = () => {
   const { handleSubmit, control } = useForm();
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
 
   const handleNavigate = () => {
-    router.replace("/Screen/(auth)/SignUp");
+    router.replace("/screen/(auth)/SignUp");
   };
+  
 
   const onSubmit = async (data: { email: string; password: string }) => {
     try {
-      
-      router.replace("/Screen/(tabs)/HomeScreen");
+      const response = await axios.post(`${API_CONFIG.ENDPOINT_1}`,data);
+      if(response) router.replace("/screen/(tabs)/HomeScreen");
     } catch (error) {
       console.error('Login failed:', error);
     }

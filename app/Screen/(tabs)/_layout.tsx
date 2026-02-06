@@ -7,12 +7,12 @@ import HomeIcon from "../../../assets/icons/icons8-home-100.png";
 import OrderIcon from "../../../assets/icons/icons8-order-100.png";
 import CartIcon from "../../../assets/icons/icons8-cart-100.png";
 import {useSelector} from "react-redux";
-import { RootState } from "@/app/store";
+import { RootState } from "@/store";
 
 const Tab = createBottomTabNavigator();
-function rootLayout(){
+export default function RootLayout(){
     const itemsCount = useSelector((state:RootState)=> state.cartSlice.noOfItems);
-   
+    
     return (
         <Tab.Navigator screenOptions={{headerShown:false,tabBarShowLabel:true}}>
             <Tab.Screen 
@@ -55,4 +55,3 @@ function rootLayout(){
 
     )
 }
-export default rootLayout;

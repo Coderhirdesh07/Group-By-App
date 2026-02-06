@@ -36,14 +36,14 @@ const styles = StyleSheet.create({
   img:{
     height:25,
     width:25,
-    padding:8,
+    padding:10,
     borderRadius:5,
-    margin:2
+    margin:5
   },
   quantity:{
     fontSize:20,
     fontWeight:'300',
     textAlign:'center',
-    padding:8,
+    padding:10,
   }
 })

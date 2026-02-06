@@ -17,7 +17,7 @@ const Card = ({ productTitle, price, imgUrl }: CardProps) => {
 
       <View style={styles.content}>
         <Text style={styles.heading} numberOfLines={1}>
-          productTitle
+          {productTitle}
         </Text>
 
         <Text style={styles.price}>₹ {price}</Text>

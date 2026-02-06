@@ -1,7 +1,7 @@
 import { StyleSheet, View ,Text} from 'react-native'
 import React,{useEffect, useState} from 'react'
-import { API_CONFIG } from '@/app/config'
-import { Orders } from '@/app/constants/data'
+import { API_CONFIG } from '@/config'
+import { Orders } from '@/constants/data'
 const OrdersScreen = () => {
   const [order,setOrders] = useState<Orders | null>(null);
 

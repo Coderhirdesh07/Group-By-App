@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { Product } from '@/app/constants/data';
-import { API_CONFIG } from '@/app/config';
+import { Product } from '@/constants/data';
+import { API_CONFIG } from '@/config';
 const HomeScreen = () => {
   const [products,setProducts] = useState<Product | null>(null);
   async function getAllProducts(){

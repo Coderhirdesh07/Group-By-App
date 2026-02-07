@@ -7,7 +7,7 @@ import HomeIcon from "../../../assets/icons/icons8-home-100.png";
 import OrderIcon from "../../../assets/icons/icons8-order-100.png";
 import CartIcon from "../../../assets/icons/icons8-cart-100.png";
 import {useSelector} from "react-redux";
-import { RootState } from "@/store";
+import { RootState } from "@/app/store";
 
 const Tab = createBottomTabNavigator();
 export default function RootLayout(){

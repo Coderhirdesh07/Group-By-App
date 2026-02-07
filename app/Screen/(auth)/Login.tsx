@@ -15,7 +15,7 @@ import { useRouter } from 'expo-router';
 import hiddenEye from "../../../assets/icons/hide.png";
 import shownEye  from "../../../assets/icons/view.png";
 import axios from "axios";
-import { API_CONFIG } from '@/config';
+import { API_CONFIG } from '@/app/config';
 const Login = () => {
   const { handleSubmit, control } = useForm();
   const router = useRouter();

@@ -6,7 +6,7 @@ import { Orders } from "../constants/data";
 export async function handleGetAllOrder(){
     try{
         const cookie = retrieveItemFromStorage("token");
-        const response = await axios.get(`${API_CONFIG.BASE_URL}`,{
+        const response = await axios.get(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINT_1}`,{
         headers:{
             Authorization:`Bearer ${cookie}`,
         },
@@ -26,7 +26,7 @@ export async function handleGetAllOrder(){
 export async function handleGetAllProduct(){
     try{
         const cookie = await retrieveItemFromStorage("token");
-        const response = await axios.get(`${API_CONFIG.BASE_URL}`,{
+        const response = await axios.get(`${API_CONFIG.BASE_URL}${API_CONFIG.ENPOINT_2}`,{
             headers:{
                 Authorization:`Bearer ${cookie}`,
             },
@@ -46,7 +46,7 @@ export async function handleGetAllProduct(){
 export async function handlePostOrder(data:Orders){
     try{
         const cookie = await retrieveItemFromStorage("token");
-        const response = await axios.post(`${API_CONFIG.BASE_URL}`,{
+        const response = await axios.post(`${API_CONFIG.BASE_URL}${API_CONFIG.ENPOINT_2}`,{
             headers:{
                 Authorisation:`Bearer ${cookie}`,
                 data:data

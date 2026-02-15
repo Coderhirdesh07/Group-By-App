@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  AppRegistry,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
@@ -40,11 +41,23 @@ const SignUp = () => {
 
   const handleSignUp: SubmitHandler<SignUpFormData> = async data => {
     try {
-      const response = await axios.post(`${API_CONFIG.ENDPOINT}`,data)
-      if(response) router.replace("/screen/(tabs)/HomeScreen");
-    } catch (error) {
-      console.log(error);
+    const response = await axios.post(
+      `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINT}/create`,
+      data
+    );
+
+    if (response.status === 200) {
+      router.replace("/screen/(tabs)/HomeScreen");
     }
+  } catch (error: any) {
+    if (error.response) {
+      console.log("Login error:", error.response.data);
+    } else if (error.request) {
+      console.log("No response from server");
+    } else {
+      console.log("Error:", error.message);
+    }
+  }
   };
 
   return (

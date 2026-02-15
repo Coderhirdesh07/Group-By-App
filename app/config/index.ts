@@ -1,7 +1,6 @@
 export const API_CONFIG={
-    BASE_URL:"",
-    ENDPOINT:"",
-    ENDPOINT_1:"",
-    ENPOINT_2:"",
-    ENPOINT_3:""
+    BASE_URL:"http://localhost:3000/api/v1/",
+    ENDPOINT:"user",
+    ENDPOINT_1:"orders",
+    ENPOINT_2:"products",
 }

@@ -16,7 +16,7 @@ function index() {
   if (loggedIn === null) return null; // or splash screen
 
   return (
-    <Redirect href={loggedIn ? "/screen/(tabs)/HomeScreen" : "/screen/(auth)/Login"} />
+    <Redirect href={loggedIn ? "/screen/(tabs)/HomeScreen" : "/screen/(auth)/SignUp"} />
   );
 }
 export default index;

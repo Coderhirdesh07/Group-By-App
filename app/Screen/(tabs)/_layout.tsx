@@ -20,8 +20,8 @@ export default function RootLayout(){
             component={HomeScreen}
             options={{
                 tabBarIcon:({focused})=>(
-                    <View style={{padding:6,borderRadius:18,backgroundColor:focused?'#007AFF' : 'transparent'}}>
-                        <Image source={HomeIcon} style={{height:24,width:24,tintColor:focused ? 'white' : '#8e8e93'}}/>
+                    <View style={{padding:4,borderRadius:18,backgroundColor:focused?'#007AFF' : 'transparent'}}>
+                        <Image source={HomeIcon} style={{height:30,width:30,tintColor:focused ? 'white' : '#8e8e93'}}/>
                     </View>
                 )
             }}
@@ -31,21 +31,20 @@ export default function RootLayout(){
              component={CartScreen}
              options={{
                 tabBarIcon:({focused})=>(
-                    <View style={{padding:6,borderRadius:18,backgroundColor:focused?'#007AFF' : 'transparent'}}>
-                        <Image source={CartIcon} style={{height:24,width:24,tintColor:focused ? 'white' : '#8e8e93'}}/>
+                    <View style={{padding:4,borderRadius:18,backgroundColor:focused?'#007AFF' : 'transparent'}}>
+                        <Image source={CartIcon} style={{height:30,width:30,tintColor:focused ? 'white' : '#8e8e93'}}/>
                     </View>
                 ),
-                tabBarBadge:itemsCount>0?itemsCount:undefined 
+                tabBarBadge:itemsCount > 0 ? itemsCount:undefined 
              }}
-            //  tabBarBadge: itemCount > 0 ? (itemCount > 99 ? "99+" : itemCount) : undefined
              />
             <Tab.Screen 
             name="Orders" 
             component={OrdersScreen}
             options={{
                 tabBarIcon:({focused})=>(
-                    <View style={{padding:6,borderRadius:18,backgroundColor:focused?'#007AFF' : 'transparent'}}>
-                        <Image source={OrderIcon} style={{height:24,width:24,tintColor:focused ? 'white' : '#8e8e93'}}/>
+                    <View style={{padding:4,borderRadius:18,backgroundColor:focused?'#007AFF' : 'transparent'}}>
+                        <Image source={OrderIcon} style={{height:30,width:30,tintColor:focused ? 'white' : '#8e8e93'}}/>
                     </View>
                 )
             }}

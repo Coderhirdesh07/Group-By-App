@@ -1,33 +1,57 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-
-
+import { FlatList, StyleSheet } from 'react-native'
+import React,{useEffect,useState} from 'react'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import Card from '@/app/component/card/Card';
+import { API_CONFIG } from '@/app/config';
+import { Product } from '@/app/constants/data';
+import axios from 'axios';
 const HomeScreen = () => {
-  // const [products,setProducts] = useState<Product | null>(null);
-  // async function getAllProducts(){
-  //   try{
-  //     const response = await fetch(`${API_CONFIG.BASE_URL}`);
-  //     if(!response.ok){
-  //       throw new Error("Error occured");
-  //     }
-  //     const items = await response.json();
-  //     setProducts(items);
-  //   }
-  //   catch(error){
-  //     console.log(error);
-  //   }
+  const [products,setProducts] = useState<Product | []>([]);
+  async function getAllProducts(){
+    try{
+      const response = await axios({
+        method:"GET",
+        url:`${API_CONFIG.BASE_URL}/${API_CONFIG.ENDPOINT_1}`,
+        headers:{
+          Authorization:''
+        }
+      });
 
-  // }
-  // useEffect(()=>{
-  //   getAllProducts();
-  // },[]);
+      if(response.data){
+       setProducts(response.data);
+      }
+      else setProducts([]);
+    }
+    catch(error){
+      console.log(error);
+    }
+
+  }
+  useEffect(()=>{
+    getAllProducts();
+  },[]);
+
   return (
-    <View>
-      <Text>HomeScreen</Text>
-    </View>
+    <SafeAreaView style = {styles.container}>
+      {/* <FlatList
+       data={products}
+       keyExtractor={(item)=>item.productName}
+       renderItem={({item}) => (
+        <Card productTitle={item.productName}  price={productPrice} imgUrl={productImg} />
+       )}
+       /> */}
+    </SafeAreaView>
   )
 }
 
 export default HomeScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    padding:10,
+    margin:5
+  },
+  
+
+})

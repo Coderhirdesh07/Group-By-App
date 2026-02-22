@@ -1,18 +1,26 @@
 import { StyleSheet, View ,Text} from 'react-native'
-import React,{useEffect, useState} from 'react'
-import { API_CONFIG } from '@/app/config'
-import { Orders } from '@/app/constants/data'
+import React,{useState,useEffect} from 'react';
+import { API_CONFIG } from '@/app/config';
+import { Orders } from '@/app/constants/data';
+import axios from 'axios';
+import Card from '@/app/component/card/Card';
+
 const OrdersScreen = () => {
-  const [order,setOrders] = useState<Orders | null>(null);
+  const [order,setOrders] = useState<Orders | []>([]);
 
   async function fetchOrders(){
     try{
-      const response = await fetch(`${API_CONFIG.BASE_URL}/${API_CONFIG.ENDPOINT}`);
-      if(!response.ok){
-        throw new Error("Error occured");
+      const response = await axios({
+        method:"GET",
+        url:`${API_CONFIG.BASE_URL}/${API_CONFIG.ENPOINT_2}`,
+        headers:{
+          Authorization:''
+        }
+      });
+      if(response.data){
+        setOrders(response.data);
       }
-      const data = await response.json();
-      setOrders(data);
+      else setOrders([]);
     }
     catch(error){
       console.log("error occured");
@@ -28,9 +36,11 @@ const OrdersScreen = () => {
       <Text style = {styles.heading}>All Orders</Text>
       <View style={styles.innerContainer}>
         {/* <FlatList
-        key={order?.productId}
+        keyExtractor={}
         data={order}
-        renderItem={CartOrderCard}
+        renderItem={({item})=>(
+          <Card/>
+        )}
         /> */}
       </View>
     </View>

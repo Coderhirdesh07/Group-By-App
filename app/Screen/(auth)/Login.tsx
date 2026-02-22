@@ -16,12 +16,14 @@ import hiddenEye from "../../../assets/icons/hide.png";
 import shownEye  from "../../../assets/icons/view.png";
 import axios from "axios";
 import { API_CONFIG } from '@/app/config';
+import { useDispatch } from 'react-redux';
+import {login} from "../../slices/authSlice"
 
 const Login = () => {
   const { handleSubmit, control } = useForm();
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
-
+  const dispatch = useDispatch();
   const handleNavigate = () => {
     router.replace("/screen/(auth)/SignUp");
   };
@@ -35,6 +37,7 @@ const Login = () => {
     );
 
     if (response.status === 200) {
+      dispatch(login(true));
       router.replace("/screen/(tabs)/HomeScreen");
     }
   } catch (error: any) {

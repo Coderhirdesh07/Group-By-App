@@ -36,7 +36,8 @@ const styles = StyleSheet.create({
   img:{
     height:25,
     width:25,
-    padding:10,
+    paddingRight:10,
+    marginHorizontal:10,
     borderRadius:5,
     margin:5
   },
@@ -44,6 +45,6 @@ const styles = StyleSheet.create({
     fontSize:20,
     fontWeight:'300',
     textAlign:'center',
-    padding:10,
+    padding:12,
   }
 })

@@ -16,13 +16,13 @@ import hiddenEye from "../../../assets/icons/hide.png";
 import shownEye from "../../../assets/icons/view.png";
 import axios from "axios";
 import { API_CONFIG } from '@/app/config';
+
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   type SignUpFormData = {
     fullName: string;
     email: string;
     password: string;
-    confirmPassword: string;
   };
 
   const router = useRouter();
@@ -43,11 +43,17 @@ const SignUp = () => {
     try {
     const response = await axios.post(
       `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINT}/create`,
-      data
+      {
+        fullname:data.fullName,
+        email:data.email,
+        password:data.password,
+        role:"Buyer"
+      }
     );
 
     if (response.status === 200) {
-      router.replace("/screen/(tabs)/HomeScreen");
+      
+      router.replace("/screen/(auth)/Login");
     }
   } catch (error: any) {
     if (error.response) {

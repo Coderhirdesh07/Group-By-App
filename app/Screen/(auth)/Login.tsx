@@ -17,7 +17,8 @@ import shownEye  from "../../../assets/icons/view.png";
 import axios from "axios";
 import { API_CONFIG } from '@/app/config';
 import { useDispatch } from 'react-redux';
-import {login} from "../../slices/authSlice"
+import {login} from "../../slices/authSlice";
+import {setItemToStorage} from "../../storage/index"
 
 const Login = () => {
   const { handleSubmit, control } = useForm();
@@ -31,13 +32,20 @@ const Login = () => {
 
   const onSubmit = async (data: { email: string; password: string }) => {
   try {
-    const response = await axios.post(
-      `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINT}/login`,
-      data
-    );
+    const response = await axios({
+      method:"POST",
+      url:`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINT}/login`,
+      data:data,
+      withCredentials:true
+    })
 
     if (response.status === 200) {
       dispatch(login(true));
+      const token = response.data.token;
+      if(token!=null){
+        await setItemToStorage("token",token);
+        console.log(`token has been stored ${token}`);
+      }
       router.replace("/screen/(tabs)/HomeScreen");
     }
   } catch (error: any) {

@@ -4,17 +4,19 @@ import { API_CONFIG } from '@/app/config';
 import { Orders } from '@/app/constants/data';
 import axios from 'axios';
 import Card from '@/app/component/card/Card';
+import { retrieveItemFromStorage } from '@/app/storage';
 
 const OrdersScreen = () => {
   const [order,setOrders] = useState<Orders | []>([]);
 
   async function fetchOrders(){
     try{
+      const token = await retrieveItemFromStorage("token");
       const response = await axios({
         method:"GET",
         url:`${API_CONFIG.BASE_URL}/${API_CONFIG.ENPOINT_2}`,
         headers:{
-          Authorization:''
+          Authorization:`Bearer ${token}`
         }
       });
       if(response.data){

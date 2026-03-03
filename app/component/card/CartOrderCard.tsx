@@ -1,8 +1,13 @@
 import { StyleSheet, Image, Text,View } from 'react-native'
 import React from 'react';
 import image from "../../../assets/images/icon.png";
-const CartOrderCard = () => {
-  const handleCartOrder = ()=>{}
+
+type OrderProps = {
+  productHeading:string;
+  quantity:number;
+  productPrice:string;
+}
+const CartOrderCard = ({productHeading,quantity,productPrice}:OrderProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.innerContainer}>

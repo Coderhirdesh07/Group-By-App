@@ -3,11 +3,10 @@ import React,{useState,useEffect} from 'react';
 import { API_CONFIG } from '@/app/config';
 import { Orders } from '@/app/constants/data';
 import axios from 'axios';
-import Card from '@/app/component/card/Card';
 import { retrieveItemFromStorage } from '@/app/storage';
 
 const OrdersScreen = () => {
-  const [order,setOrders] = useState<Orders | []>([]);
+  const [order,setOrders] = useState<Orders | null>(null);
 
   async function fetchOrders(){
     try{
@@ -22,7 +21,7 @@ const OrdersScreen = () => {
       if(response.data){
         setOrders(response.data);
       }
-      else setOrders([]);
+      else setOrders(null);
     }
     catch(error){
       console.log("error occured");
@@ -37,14 +36,10 @@ const OrdersScreen = () => {
     <View style = {styles.container}>
       <Text style = {styles.heading}>All Orders</Text>
       <View style={styles.innerContainer}>
-        {/* <FlatList
-        keyExtractor={}
-        data={order}
-        renderItem={({item})=>(
-          <Card/>
-        )}
-        /> */}
+        
       </View>
+
+      
     </View>
   )
 }

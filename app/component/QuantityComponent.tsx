@@ -1,24 +1,27 @@
 import { StyleSheet, Text, View ,Pressable,Image} from 'react-native'
-import React, { useState } from 'react'
+import React from 'react'
 import PlusIcon from "../../assets/icons/icons8-plus-100.png";
 import MinusIcon from "../../assets/icons/icons8-minus-100.png";
 
-const QuantityComponent = () => {
-  const [quantity,setQuantity] = useState<number>(0);
-  const handleIncrement = () => {
-    setQuantity(prev=>prev+1);
-  }
-  const handleDecrement=()=>{
-   setQuantity(prev=>Math.max(0,prev-1));
-  }
+type Props = {
+  quantity:number;
+  onIncrement:()=>void;
+  onDecrement:()=>void;
+}
+
+
+const QuantityComponent = ({quantity,onIncrement,onDecrement}:Props) => {
+  
   return (
     <View style={styles.container}>
-      <Pressable onPress={handleIncrement} accessibilityRole="button">
+      <Pressable onPress={onIncrement} accessibilityRole="button">
       <Image style={styles.img} source={PlusIcon}/>
       </Pressable>
+
       <Text style={styles.quantity}>{quantity}</Text>
-      <Pressable onPress={handleDecrement} accessibilityRole="button">
-      <Image style={styles.img} source={MinusIcon} />
+
+      <Pressable onPress={onDecrement} accessibilityRole="button">
+       <Image style={styles.img} source={MinusIcon} />
       </Pressable>
     </View>
   )

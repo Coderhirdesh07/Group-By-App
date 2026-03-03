@@ -21,7 +21,12 @@ import {login} from "../../slices/authSlice";
 import {setItemToStorage} from "../../storage/index"
 
 const Login = () => {
-  const { handleSubmit, control } = useForm();
+  const { handleSubmit, control } = useForm({
+    defaultValues:{
+      email:'',
+      password:''
+    }
+  });
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
@@ -30,13 +35,12 @@ const Login = () => {
   };
   
 
-  const onSubmit = async (data: { email: string; password: string }) => {
+const onSubmit = async (data: { email: string; password: string }) => {
   try {
     const response = await axios({
       method:"POST",
       url:`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINT}/login`,
       data:data,
-      withCredentials:true
     })
 
     if (response.status === 200) {

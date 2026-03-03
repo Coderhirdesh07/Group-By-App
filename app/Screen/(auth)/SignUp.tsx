@@ -7,7 +7,6 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  AppRegistry,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
@@ -23,6 +22,7 @@ const SignUp = () => {
     fullName: string;
     email: string;
     password: string;
+    confirmPassword:string;
   };
 
   const router = useRouter();
@@ -52,7 +52,6 @@ const SignUp = () => {
     );
 
     if (response.status === 200) {
-      
       router.replace("/screen/(auth)/Login");
     }
   } catch (error: any) {
@@ -63,7 +62,7 @@ const SignUp = () => {
     } else {
       console.log("Error:", error.message);
     }
-  }
+   }
   };
 
   return (
@@ -132,6 +131,7 @@ const SignUp = () => {
         <Controller
           control={control}
           name="confirmPassword"
+          defaultValue=""
           rules={{
             required: 'Confirm your password',
             validate: value => value === password || 'Passwords do not match',

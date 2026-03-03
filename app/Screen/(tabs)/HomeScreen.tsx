@@ -1,12 +1,24 @@
-import {  StyleSheet } from 'react-native'
+import {  ScrollView, StyleSheet,View } from 'react-native'
 import React,{useEffect,useState} from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
 import { API_CONFIG } from '@/app/config';
 import { Product } from '@/app/constants/data';
 import axios from 'axios';
 import { retrieveItemFromStorage } from '@/app/storage';
+
 const HomeScreen = () => {
   const [products,setProducts] = useState<Product | []>([]);
+  const [quantity,setQuantity] = useState<number>(0);
+
+  function onIncrementQuantity(){
+    setQuantity((prev)=>prev+1);
+  }
+
+  function onDecrementQuantity(){
+    setQuantity((prev)=>Math.max(0,prev-1));
+  }
+
+  function handleCart(){}
+
   async function getAllProducts(){
     try{
       const token = await retrieveItemFromStorage("token");
@@ -28,12 +40,13 @@ const HomeScreen = () => {
     }
 
   }
+
   useEffect(()=>{
     getAllProducts();
   },[]);
 
   return (
-    <SafeAreaView style = {styles.container}>
+    <View style = {styles.container}>
       {/* <FlatList
        data={products}
        keyExtractor={(item)=>item.productName}
@@ -41,7 +54,17 @@ const HomeScreen = () => {
         <Card productTitle={item.productName}  price={productPrice} imgUrl={productImg} />
        )}
        /> */}
-    </SafeAreaView>
+       <ScrollView>
+        <Card 
+         handleCartItem={handleCart} 
+         quantity={quantity} 
+         onIncrement={onIncrementQuantity}
+         onDecrement={onDecrementQuantity}
+         />
+        
+      </ScrollView>
+
+    </View>
   )
 }
 

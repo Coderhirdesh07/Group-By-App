@@ -1,15 +1,15 @@
-export interface Orders{
+export type Orders = {
     productId:string;
+    productImg:string;
     productName:string;
     productPrice:number;
     productQuantity:number;
 }
-export interface Product{
+export type Product = {
     productId:string;
     productName:string;
     productPrice:number;
     productQuantity:number;
     productImg?:string;
 }
-
 

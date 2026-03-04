@@ -14,13 +14,17 @@ export default function RootLayout(){
     const itemsCount = useSelector((state:RootState)=> state.cartSlice.noOfItems);
     
     return (
-        <Tab.Navigator screenOptions={{headerShown:false,tabBarShowLabel:true}}>
+        <Tab.Navigator 
+        screenOptions={{
+            headerShown:false,
+            tabBarShowLabel:true,
+           }}>
             <Tab.Screen 
             name="Home" 
             component={HomeScreen}
             options={{
                 tabBarIcon:({focused})=>(
-                    <View style={{padding:4,borderRadius:18,backgroundColor:focused?'#007AFF' : 'transparent'}}>
+                    <View style={{padding:4,borderRadius:18,backgroundColor:focused?'#653cf6cc' : 'transparent'}}>
                         <Image source={HomeIcon} style={{height:30,width:30,tintColor:focused ? 'white' : '#8e8e93'}}/>
                     </View>
                 )
@@ -31,7 +35,7 @@ export default function RootLayout(){
              component={CartScreen}
              options={{
                 tabBarIcon:({focused})=>(
-                    <View style={{padding:4,borderRadius:18,backgroundColor:focused?'#007AFF' : 'transparent'}}>
+                    <View style={{padding:4,borderRadius:18,backgroundColor:focused?'#653cf6cc' : 'transparent'}}>
                         <Image source={CartIcon} style={{height:30,width:30,tintColor:focused ? 'white' : '#8e8e93'}}/>
                     </View>
                 ),
@@ -43,7 +47,7 @@ export default function RootLayout(){
             component={OrdersScreen}
             options={{
                 tabBarIcon:({focused})=>(
-                    <View style={{padding:4,borderRadius:18,backgroundColor:focused?'#007AFF' : 'transparent'}}>
+                    <View style={{padding:4,borderRadius:18,backgroundColor:focused?'#653cf6cc' : 'transparent'}}>
                         <Image source={OrderIcon} style={{height:30,width:30,tintColor:focused ? 'white' : '#8e8e93'}}/>
                     </View>
                 )

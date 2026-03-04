@@ -1,12 +1,13 @@
-import { StyleSheet, View ,Text} from 'react-native'
+import { StyleSheet, View ,Text, FlatList} from 'react-native'
 import React,{useState,useEffect} from 'react';
 import { API_CONFIG } from '@/app/config';
 import { Orders } from '@/app/constants/data';
 import axios from 'axios';
 import { retrieveItemFromStorage } from '@/app/storage';
+import CartOrderCard from '@/app/component/card/CartOrderCard';
 
 const OrdersScreen = () => {
-  const [order,setOrders] = useState<Orders | null>(null);
+  const [order,setOrders] = useState<Orders[]>([]);
 
   async function fetchOrders(){
     try{
@@ -21,7 +22,7 @@ const OrdersScreen = () => {
       if(response.data){
         setOrders(response.data);
       }
-      else setOrders(null);
+      else setOrders([]);
     }
     catch(error){
       console.log("error occured");
@@ -35,11 +36,19 @@ const OrdersScreen = () => {
   return (
     <View style = {styles.container}>
       <Text style = {styles.heading}>All Orders</Text>
-      <View style={styles.innerContainer}>
-        
-      </View>
 
-      
+      <View style={styles.innerContainer}>
+        <FlatList
+        data={order}
+        keyExtractor={(item)=>item.productId}
+        renderItem={({item})=>(
+          <CartOrderCard 
+           quantity={item.productQuantity}
+           productHeading={item.productName} 
+           productPrice={item.productPrice}/>
+        )}
+        />
+      </View>
     </View>
   )
 }

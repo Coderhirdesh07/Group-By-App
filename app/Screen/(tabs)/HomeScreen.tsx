@@ -1,12 +1,13 @@
-import {  ScrollView, StyleSheet,View } from 'react-native'
+import {  FlatList, StyleSheet,View } from 'react-native'
 import React,{useEffect,useState} from 'react'
 import { API_CONFIG } from '@/app/config';
 import { Product } from '@/app/constants/data';
 import axios from 'axios';
 import { retrieveItemFromStorage } from '@/app/storage';
+import Card from '@/app/component/card/Card';
 
 const HomeScreen = () => {
-  const [products,setProducts] = useState<Product | []>([]);
+  const [products,setProducts] = useState<Product[]>([]);
   const [quantity,setQuantity] = useState<number>(0);
 
   function onIncrementQuantity(){
@@ -38,7 +39,6 @@ const HomeScreen = () => {
     catch(error){
       console.log(error);
     }
-
   }
 
   useEffect(()=>{
@@ -47,23 +47,22 @@ const HomeScreen = () => {
 
   return (
     <View style = {styles.container}>
-      {/* <FlatList
-       data={products}
-       keyExtractor={(item)=>item.productName}
-       renderItem={({item}) => (
-        <Card productTitle={item.productName}  price={productPrice} imgUrl={productImg} />
-       )}
-       /> */}
-       <ScrollView>
-        <Card 
-         handleCartItem={handleCart} 
-         quantity={quantity} 
-         onIncrement={onIncrementQuantity}
-         onDecrement={onDecrementQuantity}
-         />
-        
-      </ScrollView>
-
+      <FlatList
+      data={products}
+      showsVerticalScrollIndicator={false}
+      keyExtractor={(item)=>item.productId}
+      renderItem={(item)=>(
+        <Card
+        heading={item.item.productName}
+        price={item.item.productPrice}
+        quantity={quantity}
+        onIncrement={onIncrementQuantity}
+        onDecrement={onDecrementQuantity}
+        handleCartItem={handleCart}
+        />
+      )}
+      />
+      
     </View>
   )
 }
@@ -76,6 +75,4 @@ const styles = StyleSheet.create({
     padding:10,
     margin:5
   },
-  
-
 })

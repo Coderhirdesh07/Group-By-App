@@ -5,7 +5,7 @@ import image from "../../../assets/images/icon.png";
 type OrderProps = {
   productHeading:string;
   quantity:number;
-  productPrice:string;
+  productPrice:number;
 }
 const CartOrderCard = ({productHeading,quantity,productPrice}:OrderProps) => {
   return (
